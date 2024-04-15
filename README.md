@@ -1,5 +1,10 @@
 # LLM-based Exchange Rate Forecasting
 How can generative AI be used for exchange rate forecasting based on historical GDP, inflation, exchange rates, and other socioeconomic factors? In finance, an exchange rate is a measure between two currencies. At this rate, one currency is exchanged for another, i.e., exchange rates are determined in the foreign exchange market, which is open to buyers and sellers, and where currency trading is continuous. It is one of the major role players in economic decisions due to its importance and effect on all sorts of economic activities. Thus, exchange rate forecasting has a substantial role in economic decision-making. From this perspective, exchange rates are financial time series. 
+The below graph shows that the rate fluctuates between 1.2 and 2.2, showing significant dependencies on the period. For example, Sterling can buy from 1.2$ to 2.2$: 
+
+![](images/GBP.png)
+
+It is quite understandable, why these periods are so much volatile. The first one is around 2008, which is the time of the sub-mortgage financial crisis and the second one is in 2016, 24 June, which is the day after the BREXIT referendum.
 
 ## Datasets
 I have chosen the GBP/USD (British Sterling / US Dollar) rate to represent a financial time series for this project. I started with the primary data: GBP/USD exchange rate. Initially, I thought of collecting the daily exchange rate data from “https://www.investing.com/”. This source provides **Date, Price, Open, Height, Low, Volume and Change(%)**. Later on, I collected a new dataset from FED, including the other **22 exchange rate parities** (which I used for the multivariate analysis models) along with the **GBP/USD parity**.
@@ -24,15 +29,9 @@ In terms of modelling forecast methods, it is essential to understand the featur
 ### Base Model (ARIMA)
 I intended to create a base model using the econometric Autoregressive Integrated Moving Average (ARIMA). We read the data and extracted the GBP series for univariate analysis.
 
-![](images/GBP.png)
-
-This data is from the beginning of 2001 till 2020 August. The data shows that the rate fluctuates between 1.2 and 2.2; indicating that depending on the period, a Sterling can buy from 1.2$ to 2.2$.
-
-My baseline model is ARIMA.  The first one is around 2008, which is the time of the sub-mortgage financial crisis and the second one is in 2016, 24 June, which is the day after the BREXIT referendum. It is quite understandable, why these periods are so much volatile. The residual distribution is very close to a normal distribution, confirming that we have done our job in this ARIMA process correctly. For the test set, I separated the last 50 observations of the data. The prediction vs actual comparison graph looks good.
-
 ![](images/ARIMA.png)
 
-We evaluated the model w.r.t RMSE. I observed a Test RMSE of 0.00643: the lower the RMSE, the better the prediction is. 
+For the test set, I separated the last 50 observations of the data. The prediction vs actual comparison graph looks good. We evaluated the model w.r.t RMSE. I observed a Test RMSE of 0.00643: the lower the RMSE, the better the prediction is. The residual distribution is very close to a normal distribution, confirming that we have done our job in this ARIMA process correctly. 
 
 ### MLP Univariate
 We model Multi-Layer Perceptron for UNIVARIATE analysis in a univariate analysis setting, e.g., we use yesterday’s data to predict today and today’s data to predict tomorrow and so on. This means, we used the same data shifted … a lagged value of itself. We can use data that is 2 or 3 or more days earlier. This is a level that we decide for the lag value. I predicted 50 days’ data, thus I decided to use a lag value for 50 days, though I could have chosen my lag value differently, too: 
