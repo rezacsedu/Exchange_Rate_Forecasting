@@ -28,11 +28,11 @@ Lastly, I acquired current account to GDP data from the OECD’s website and cur
 We use the Autoregressive Integrated Moving Average (ARIMA) approach as a baseline. Besides, 4 different **DL** architectures: MLP Univariate, CNN Univariate, MLP Multivariate, and CNN Multivariate are trained as ARIMAS's counterparts.  
 
 ### Baseline: ARIMA
-To train the base econometric ARIMA model, we read the data and extracted the GBP series for univariate analysis. For the test set, I separated the last 50 observations of the data. 
+To train the base econometric ARIMA model, we read the data and extracted the GBP series for univariate analysis. For the test set, I separated the last 50 observations of the data. We evaluated the model w.r.t RMSE. I observed a Test RMSE of 0.00643: the lower the RMSE, the better the prediction is. Further, the prediction vs actual comparison graph looks good:
 
 ![](images/ARIMA.png)
 
-The prediction vs actual comparison graph looks good. We evaluated the model w.r.t RMSE. I observed a Test RMSE of 0.00643: the lower the RMSE, the better the prediction is. The residual distribution is very close to a normal distribution, confirming that we have done our job in this ARIMA process correctly. 
+The residual distribution is quite close to a normal distribution, confirming the ARIMA process was useful. 
 
 ### MLP Univariate
 We model Multi-Layer Perceptron for UNIVARIATE analysis in a univariate analysis setting, e.g., we use yesterday’s data to predict today and today’s data to predict tomorrow's and so on. This means, we used the same data shifted … a lagged value of itself. We can use data that is 2 or 3 or more days earlier. This is a level that we decide for the lag value. I predicted 50 days of data, meaning a lag value of 50 days is used: 
