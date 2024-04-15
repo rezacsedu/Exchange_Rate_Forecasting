@@ -2,7 +2,7 @@
 How can LLM or generative AI be used for exchange rate forecasting based on historical GDP, inflation, exchange rates, and other socioeconomic factors
 
 ## Datasets
-In finance, an exchange rate is a measure between two currencies. At this rate, one currency is exchanged for another. It is also regarded as the value of one country’s currency in terms of another currency. Exchange rates are determined in the foreign exchange market, which is open to buyers and sellers, and where currency trading is continuous. From this perspective, Exchange Rates are financial time series, but at the same time a major role player in economic decisions due to their importance and effect on all sorts of economic activities. Thus, exchange rate forecasting has a substantial role in the economic decision-making processes. Accurate estimation of the rate has a significant influence on successful decisions.
+In finance, an exchange rate is a measure between two currencies. At this rate, one currency is exchanged for another. It is also regarded as the value of one country’s currency in terms of another currency. Exchange rates are determined in the foreign exchange market, which is open to buyers and sellers, and where currency trading is continuous. From this perspective, Exchange Rates are financial time series, but at the same time a major role player in economic decisions due to their importance and effect on all sorts of economic activities. Thus, exchange rate forecasting has a substantial role in the economic decision-making processes. 
 
 In terms of modelling forecast methods, it is essential to understand the features of exchange rates to develop decent models. First and foremost, exchange rates are sequenced data. The transactions are executed one after another and with a timestamp, hence they produce time-series data. Besides their sequenced nature, their other notable feature is that they are nonlinear and nonstationary, meaning they are nondirectional and ever-changing without presenting any regularity.
 In terms of modelling time-series data, the literature suggests some statistical (or econometric) modelling methods such as (S)ARIMA, ETS (for univariate series), or VAR (for multivariate series) to be employed. In general, machine learning and more precisely deep learning applications are highly successful in mapping irregular data. Regarding this phenomenon, this project intends to compare some Deep Learning methods with literature-suggested econometric methods. In this project, Box-Jenkins’ ARIMA methodology will be used as a baseline model (acquired from the time-series forecasting literature), while MLP and CNN techniques will be getting employed for Deep Learning models. Lastly, I have chosen the GBP/USD (British Sterling / US Dollar) rate to represent a financial time series for this project.
@@ -11,12 +11,12 @@ For the time being, I used GBP/USD time series for my data. I intended to come u
 
 I started with the primary data: GBP/USD exchange rate. I was looking for the daily exchange rate data for this project. My first, collection of series was from “https://www.investing.com/”. The data was coming with the **Date, Price, Open, Height, Low, Volume and Change(%)** structure. Later on, in my project, I discarded this data and collected a new dataset from FED, including the other **22 exchange rate parities** (which I used for the multivariate analysis models) along with the **GBP/USD parity**.
 
-  Forex (daily -  AUD, EUR, NZD, GBP, BRL, CAD, CNY, DKK, HKD, INR, JPY, MYR, MXN, NOK, ZAR, SGD, KRW, LKR, SEK, CHF, TWD, THB, VEB.), from https://www.federalreserve.gov/, from 2000-01-03 to 2020-08-21.
+  - Forex (daily -  AUD, EUR, NZD, GBP, BRL, CAD, CNY, DKK, HKD, INR, JPY, MYR, MXN, NOK, ZAR, SGD, KRW, LKR, SEK, CHF, TWD, THB, VEB.), from https://www.federalreserve.gov/, from 2000-01-03 to 2020-08-21.
 
 My second data source was the Federal Reserve Bank of St. Louis. I have collected **interest rates** and **normalized GDP** data (both for the US and UK, data downloaded separately) from here. 
     
-  Normalized GDP (monthly), from https://fred.stlouisfed.org/ from 2000-01-01 to 2024-04-13.     
-  Libor Rates (daily), from https://fred.stlouisfed.org/, from 2001-01-02 to 2020-09-18.
+  - Normalized GDP (monthly), from https://fred.stlouisfed.org/ from 2000-01-01 to 2024-04-13.     
+  - Libor Rates (daily), from https://fred.stlouisfed.org/, from 2001-01-02 to 2020-09-18.
 
 Lastly, I acquired current account to GDP data from the OECD’s website. Current Account to GDP (quarterly), from https://stats.oecd.org/, from Q1-2000 to Q1-2020.
 
@@ -29,7 +29,6 @@ Eventually, I had 29 different data (28 of them to be predictor variables) and 4
 ### Current Account to GDP
 
 ### Libor Rates (Interest Rates for GBP and USD)
-
 
 ## Methodological approaches 
 
