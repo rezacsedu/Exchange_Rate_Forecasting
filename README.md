@@ -39,7 +39,7 @@ We model Multi-Layer Perceptron for UNIVARIATE analysis in a univariate analysis
 
 ![](images/MLP_U.png)
 
-I observed a Test RMSE of 0.01295, which is OKish to say that there is a good match, yet the evaluation metric is not as good as the ARIMA process.
+I observed a Test RMSE of 0.01295, which is OKish, yet the evaluation metric is not as good as the ARIMA process.
 
 ### CNN Univariate
 The second DL architecture is CNN in a univariate setting. When evaluating the model on the test set, following similar data preprocessing, I observed an RMSE of 0.03028. The score is 2,5 times worse than the MLP_U model.
