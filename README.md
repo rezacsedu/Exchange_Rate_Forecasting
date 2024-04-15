@@ -24,8 +24,8 @@ Lastly, I acquired current account to GDP data from the OECD’s website and cur
   - Current Account to GDP
   - Libor Rates (Interest Rates for GBP and USD)
 
-## Methodological approaches 
-We use the Autoregressive Integrated Moving Average (ARIMA) approach as a baseline. Besides, 4 different **DL** architectures: MLP Univariate, CNN Univariate, MLP Multivariate, and CNN Multivariate are trained as ARIMAS's counterparts.  
+## Current methodological approaches 
+We use the Autoregressive Integrated Moving Average (ARIMA) as the baseline, along with 4 different **DL** architectures: MLP Univariate, CNN Univariate, MLP Multivariate, and CNN Multivariate are trained as its counterparts.  
 
 ### Baseline: ARIMA
 To train the base econometric ARIMA model, we read the data and extracted the GBP series for univariate analysis. For the test set, I separated the last 50 observations of the data. We evaluated the model w.r.t RMSE. I observed a Test RMSE of 0.00643: the lower the RMSE, the better the prediction is. Further, the prediction vs actual comparison graph looks good:
@@ -65,4 +65,11 @@ Key findings suggest that one of the **DL** architectures was good enough to out
     - The MLP multivariate: 0.02739
     - The CNN univariate: 0.03028. 
 
-The ARIMA process is a linear regressor, thus the results of the process would be the same even if we repeat it, meaning it would show quite stable results, unlike its DL counterparts. The main reasons include random factors and stochasticity in their learning process. Therefore, I'd like to have other data sources, followed by leveraging the power of generative AI, particularly with Large Lange Models (LLMs). 
+### Future works
+The ARIMA process is a linear regressor, thus the results of the process would be the same even if we repeat it, meaning it would show quite stable results, unlike its DL counterparts. The main reasons include random factors and stochasticity in their learning process. Therefore, I'd like to have other data sources, followed by leveraging the power of generative AI, particularly with Large Lange Models (LLMs). Nevertheless, different modalities of information exert distinctive impacts on exchange rates. Therefore, we want to employ a multimodal fusion-based long short-term memory (MF-LSTM) approach to forecasting the targeted exchange rates. For this, we model both market indicators and social media sentiments separately, followed by fusing them: 
+
+    – Sentiment analysis: we will employ transformer LLMs such as bidirectional encoder representations from transformers (BERT) to extract the daily sentiments in the Forex market from both countries’ social media platforms. More than a million pieces of microblogs are processed to create sentiment series.
+    – Deep multimodal fusion (MF): two LSTM models are deployed in the first layer to learn from the influencing factors within market indicators and
+    social media sentiments separately. In the second layer, to represent the couplings of each modality, a shared representation layer is applied to fuse the two abstract
+    features acquired from the first layer. Finally, a fully connected layer is fed by the coupled features learned from the previous layer to perform the exchange rate
+    forecasting task.
