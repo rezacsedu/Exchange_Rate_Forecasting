@@ -1,5 +1,5 @@
 # LLM-based Exchange Rate Forecasting
-How can generative AI be used for exchange rate forecasting based on historical GDP, inflation, exchange rates, and other socioeconomic factors? In finance, an exchange rate is a measure between two currencies. At this rate, one currency is exchanged for another, i.e., exchange rates are determined in the foreign exchange market, which is open to buyers and sellers, and where currency trading is continuous. It is one of the major role players in economic decisions due to its importance and effect on all sorts of financvial activities. Thus, exchange rate forecasting can have a substantial role in financial decision-making. 
+How can generative AI be used for exchange rate forecasting based on historical GDP, inflation, exchange rates, and other socioeconomic factors? In finance, an exchange rate is a measure between two currencies. At this rate, one currency is exchanged for another, i.e., exchange rates are determined in the foreign exchange market, which is open to buyers and sellers, and where currency trading is continuous. It is one of the major role players in economic decisions due to its importance and effect on all sorts of financial activities. Thus, exchange rate forecasting can have a substantial role in financial decision-making. 
 
 ## Datasets
 In terms of modelling forecast methods, it is essential to understand the features of exchange rates to develop decent models. First and foremost, exchange rates are sequenced data. The transactions are executed sequentially w.r.t with a timestamp, yielding a time series. Besides their sequenced nature, their other notable feature is that they are nonlinear and nonstationary, meaning they are nondirectional and ever-changing without presenting any regularity. The below graph shows that the rate fluctuates between 1.2 and 2.2, showing significant dependencies on the period. For example, Sterling can buy from 1.2$ to 2.2$: 
@@ -25,17 +25,17 @@ Lastly, I acquired current account to GDP data from the OECD’s website and cur
   - Libor Rates (Interest Rates for GBP and USD)
 
 ## Methodological approaches 
-Literature suggests some statistical (or econometric) modelling methods such as (S)ARIMA, ETS (for univariate series), or VAR (for multivariate series) to be employed. ARIMA methodology is used as a baseline model, while MLP and CNN architectures will use DL methods. Besides, 4 different **DL** architectures were used to compare with MLP Univariate, CNN Univariate, MLP Multivariate, and CNN Multivariate.  
+We use the Autoregressive Integrated Moving Average (ARIMA) approach as a baseline. Besides, 4 different **DL** architectures: MLP Univariate, CNN Univariate, MLP Multivariate, and CNN Multivariate are trained as ARIMAS's counterparts.  
 
 ### Baseline: ARIMA
-I intended to create a base model using the econometric Autoregressive Integrated Moving Average (ARIMA). We read the data and extracted the GBP series for univariate analysis.
+To train the base econometric ARIMA model, we read the data and extracted the GBP series for univariate analysis. For the test set, I separated the last 50 observations of the data. 
 
 ![](images/ARIMA.png)
 
-For the test set, I separated the last 50 observations of the data. The prediction vs actual comparison graph looks good. We evaluated the model w.r.t RMSE. I observed a Test RMSE of 0.00643: the lower the RMSE, the better the prediction is. The residual distribution is very close to a normal distribution, confirming that we have done our job in this ARIMA process correctly. 
+The prediction vs actual comparison graph looks good. We evaluated the model w.r.t RMSE. I observed a Test RMSE of 0.00643: the lower the RMSE, the better the prediction is. The residual distribution is very close to a normal distribution, confirming that we have done our job in this ARIMA process correctly. 
 
 ### MLP Univariate
-We model Multi-Layer Perceptron for UNIVARIATE analysis in a univariate analysis setting, e.g., we use yesterday’s data to predict today and today’s data to predict tomorrow's one and so on. This means, we used the same data shifted … a lagged value of itself. We can use data that is 2 or 3 or more days earlier. This is a level that we decide for the lag value. I predicted 50 days of data, meaning a lag value of 50 days is used: 
+We model Multi-Layer Perceptron for UNIVARIATE analysis in a univariate analysis setting, e.g., we use yesterday’s data to predict today and today’s data to predict tomorrow's and so on. This means, we used the same data shifted … a lagged value of itself. We can use data that is 2 or 3 or more days earlier. This is a level that we decide for the lag value. I predicted 50 days of data, meaning a lag value of 50 days is used: 
 
 ![](images/MLP_U.png)
 
@@ -52,7 +52,7 @@ For the multivariate analysis using MLP architecture, we lowered the lagged valu
 ![](images/MLP_M.png)
 
 ### CNN Multivariate
-Time-series being a sequenced data provides a good opportunity to test CNN architectures abilities -- especially for multivariate analysis. This model seems more successful than its univariate counterpart, yielding an RMSE metric of 0.02076: 
+Time-series being a sequenced data provides a good opportunity to test CNN architectures abilities -- especially for multivariate analysis, yielding an RMSE metric of 0.02076, making it better compared to its univariate counterpart.  
 
 ![](images/CNN_M.png)
 
