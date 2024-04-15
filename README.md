@@ -68,6 +68,8 @@ Key findings suggest that one of the **DL** architectures was good enough to out
 ### Future works
 The ARIMA process is a linear regressor, thus the results of the process would be the same even if we repeat it, meaning it would show quite stable results, unlike its DL counterparts. The main reasons include random factors and stochasticity in their learning process. Therefore, I'd like to have other data sources, followed by leveraging the power of generative AI, particularly with Large Lange Models (LLMs). Nevertheless, different modalities of information exert distinctive impacts on exchange rates. Therefore, we want to employ a multimodal fusion-based long short-term memory (MF-LSTM) approach to forecasting the targeted exchange rates. For this, we model both market indicators and social media sentiments separately, followed by fusing them: 
 
+![](images/wf.png)
+
 #### Sentiment analysis 
 We will employ transformer LLMs such as bidirectional encoder representations from transformers (BERT) to extract the daily sentiments in the Forex market from both countries’ social media platforms. More than a million pieces of microblogs are processed to create sentiment series.
 
